@@ -11,9 +11,12 @@ document.body.appendChild( renderer.domElement );
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
-camera.position.z = 15;
+camera.position.z = 40;
 
 let sphere, sphere2, sphere3;
+
+const axesHelper = new THREE.AxesHelper( 150 );
+scene.add( axesHelper );
 
 function init(){
   const geometry = new THREE.SphereGeometry( 1, 20, 10 );
@@ -23,8 +26,8 @@ function init(){
   sphere3 = new THREE.Mesh( geometry, material );
 
   sphere.position.x = 0;
-  sphere2.position.x = 2;
-  sphere3.position.x = -2;
+  sphere2.position.x = 10;
+  sphere3.position.x = -10;
 
 
   scene.add( sphere );
@@ -43,15 +46,16 @@ function animate(){
 
   const x = Math.cos(time);
   const y = Math.sin(time);
+  
 
-  sphere.position.set(x - 5, y, 0);
+  sphere.position.set(x * 10 - 25, y * 10, 0);
 
-  sphere2.position.set(5 + x, 0, 0);
+  sphere2.position.set(25 + x * 10, 0, 0);
 
-  sphere3.position.set(x, y, sphere3.position.z + 0.01);
-
-  if (sphere3.position.z > 10){
-    sphere3.position.z = -10;
+  sphere3.position.set(x * 10, sphere3.position.y + 0.05, y * 10);
+  
+  if (sphere3.position.y > 25){
+    sphere3.position.y = -25;
   }
 
   requestAnimationFrame( (t) => animate(t) );
