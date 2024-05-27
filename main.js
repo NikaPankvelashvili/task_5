@@ -15,7 +15,7 @@ camera.position.z = 40;
 
 let sphere, sphere2, sphere3;
 
-const axesHelper = new THREE.AxesHelper( 150 );
+const axesHelper = new THREE.AxesHelper( 25 );
 scene.add( axesHelper );
 
 function init(){
